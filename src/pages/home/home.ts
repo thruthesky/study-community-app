@@ -17,3 +17,4 @@ export class HomePage {
     //       modalRef.componentInstance.name = 'Aonic';
     // }
 }
+
