@@ -5,6 +5,13 @@ This project is for developers who want to learn the basic of app development.
 Official Site : [www.angularstudy.com](http://www.angularstudy.com)
 
 
+# Installation
+
+* git clone https://github.com/thruthesky/study-community-app
+* npm insall
+* git submodule update --init
+
+
 
 # Features
 
