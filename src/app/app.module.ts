@@ -10,6 +10,9 @@ import { AppComponent } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HelpPage } from '../pages/help/help';
 
+
+import { HeaderComponent } from './../components/header/header';
+
 import { NoticeModalContent } from '../components/modals/notice/notice';
 
 const appRoutes: Routes = [
@@ -22,7 +25,8 @@ const appRoutes: Routes = [
     AppComponent,
     HomePage,
     HelpPage,
-    NoticeModalContent
+    NoticeModalContent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
