@@ -2,9 +2,10 @@
 
 <!--Register User-->
 <br/>
-<h2>Register Account</h2>
 <section class="container">
-    <div class="form-group">
+<h2 *ngIf="! user.logged">Register Account</h2>
+<h2 *ngIf="user.logged">Update Account</h2>
+    <div class="form-group" *ngIf="! user.logged">
         <label>ID</label>
         <input type="text" class="form-control" [(ngModel)]="register.id" >
     </div>
@@ -20,21 +21,23 @@
         <label>Mobile</label>
         <input type="text" class="form-control" [(ngModel)]="register.mobile" >
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="! user.logged">
         <label>Email</label>
         <input type="email" class="form-control" [(ngModel)]="register.email" >
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="! user.logged">
         <label>Password</label>
         <input type="password" class="form-control" [(ngModel)]="register.password" >
     </div>
-    <button class="btn btn-primary" (click)="onClickRegister()">Register</button>
+    <button class="btn btn-primary" *ngIf="! user.logged" (click)="onClickRegister()">Register</button>
+    <button class="btn btn-primary" *ngIf="user.logged" (click)="onClickUpdateUser()">Update Account</button>
+    <button class="btn btn-danger" *ngIf="user.logged" (click)="onClickDeleteUser()">Delete Account</button>            
 </section>
 
 <!--Login User-->
 <hr>
+<section class="container" *ngIf="! user.logged">
 <h2>Login Account</h2>
-<section class="container">
      <div class="form-group">
         <label>ID</label>
         <input type="email" class="form-control" [(ngModel)]="login.id" >
@@ -45,3 +48,4 @@
     </div>
     <button class="btn btn-primary" (click)="onClickLogin()">Login</button>
 </section>
+

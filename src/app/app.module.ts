@@ -11,13 +11,16 @@ import { AppComponent } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HelpPage } from '../pages/help/help';
 import { UserPage } from '../pages/user/user';
+import { ForumHomePage } from '../pages/forum/forum-home';
 
 import { HeaderComponent } from './../components/header/header';
+import { ViewComponent } from '../components/view/view';
 import { BackendAngularApiModule } from '../api/backend-angular-api/backend-angular-api.module';
 import { NoticeModalContent } from '../components/modals/notice/notice';
 
 const appRoutes: Routes = [
   { path: 'user', component: UserPage },
+  { path: 'forum-home', component: ForumHomePage },
   { path: 'home', component: HomePage },
   { path: 'help', component: HelpPage },
   { path: '', component: UserPage }
@@ -28,9 +31,11 @@ const appRoutes: Routes = [
     AppComponent,
     HomePage,
     HelpPage,
+    ForumHomePage,
     UserPage,
     NoticeModalContent,
-    HeaderComponent
+    HeaderComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { User } from '../../api/backend-angular-api/user';
-import { USER_REGISTER_REQUEST_DATA, USER_LOGIN_REQUEST_DATA } from '../../api/backend-angular-api/interface';
+import { 
+    USER_REGISTER_REQUEST_DATA, 
+    USER_DATA_RESPONSE_DATA, 
+    USER_LOGIN_REQUEST_DATA,
+    USER_UPDATE_REQUEST_DATA 
+} from '../../api/backend-angular-api/interface';
 
 @Component({
     selector: 'user-page',
@@ -12,7 +17,25 @@ export class UserPage {
     register: USER_REGISTER_REQUEST_DATA = <USER_REGISTER_REQUEST_DATA> {}
     login: USER_LOGIN_REQUEST_DATA = <USER_LOGIN_REQUEST_DATA> {}
 
-    constructor( private userService: User ){ }
+    constructor( private user: User ){ 
+        // this.getUser();
+    }
+
+    getUser(){
+        // let data: USER_DATA_RESPONSE_DATA = <USER_DATA_RESPONSE_DATA> {
+        //     name: this.register.name,
+        //     address: this.register.address,
+        //     mobile: this.register.mobile
+        // }
+        // this.user.getUserData( res => {
+        //     console.log( "User Data: ", res );
+        //     res = data;
+        // }, error => {
+        //     alert( "Unable to update account. Error: " + error );
+        // }, () => {
+
+        // });
+    }
 
     validateInput(){
         if ( this.register.id == null || this.register.id == "" ) return this.validateError('ID');
@@ -32,9 +55,12 @@ export class UserPage {
         return false;
     }
 
+    clearAll(){
+    }
+
     onClickRegister(){
         if( this.validateInput() == false) return;
-        this.userService.register( this.register, res => {
+        this.user.register( this.register, res => {
             alert( "User registration success!" );
         }, error => {
             alert( "User registration failed! Error: " + error );
@@ -44,12 +70,30 @@ export class UserPage {
     }
     
     onClickLogin(){
-        if( this.validateInput() == false) return;
-        this.userService.login( this.login, res => {
-            
+        // if( this.validateInput() == false) return;
+        this.user.login( this.login, res => {
+            alert( "Logged In!" );
         }, error => {
-
+            alert( "Unable to logged in! Error: " + error );
         }); 
     }
 
+    onClickUpdateUser(){
+        let data: USER_UPDATE_REQUEST_DATA = {
+            name: this.register.name,
+            address: this.register.address,
+            mobile: this.register.mobile
+        }
+        this.user.update( data, res => {
+            alert( "Update success!" );
+        }, error => {
+            alert( "Update failed! Error: " + error );
+        }, () => {
+
+        });
+    }
+
+    onClickDeleteUser(){
+
+    }
 }

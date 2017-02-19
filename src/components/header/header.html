@@ -8,12 +8,26 @@
                 </span>
                 <div class="text">Home</div>
             </li>
+            <li class=" menu forum" routerLink="/forum-home">
+                <span class="icon fa-stack fa-lg">
+                    <i class="background fa fa-circle fa-stack-2x"></i>
+                    <i class="font fa fa-paper-plane fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="text">Forum</div>
+            </li>
             <li class="menu user" routerLink="/user">
                 <span class="icon fa-stack fa-lg">
                     <i class="background fa fa-circle fa-stack-2x"></i>
                     <i class="font fa fa-user fa-stack-1x fa-inverse"></i>
                 </span>
                 <div class="text">User</div>
+            </li>
+            <li class=" menu user" (click)="onClickLogout()" *ngIf="user.logged">
+                <span class="icon fa-stack fa-lg">
+                    <i class="background fa fa-circle fa-stack-2x"></i>
+                    <i class="font fa fa-user fa-stack-1x fa-inverse"></i>
+                </span>
+                <div class="text">Logout</div>
             </li>
         </ul>
     </nav>
