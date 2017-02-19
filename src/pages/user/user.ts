@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../api/backend-angular-api/user';
 import { 
     USER_REGISTER_REQUEST_DATA, 
@@ -12,13 +12,18 @@ import {
     templateUrl: 'user.html'
 })
 
-export class UserPage {
+export class UserPage implements OnInit {
 
     register: USER_REGISTER_REQUEST_DATA = <USER_REGISTER_REQUEST_DATA> {}
     login: USER_LOGIN_REQUEST_DATA = <USER_LOGIN_REQUEST_DATA> {}
 
     constructor( private user: User ){ 
-        // this.getUser();
+    }
+
+    ngOnInit(){
+        if( this.user.logged ){
+            this.getUser();
+        }
     }
 
     getUser(){
@@ -27,14 +32,16 @@ export class UserPage {
         //     address: this.register.address,
         //     mobile: this.register.mobile
         // }
-        // this.user.getUserData( res => {
-        //     console.log( "User Data: ", res );
-        //     res = data;
-        // }, error => {
-        //     alert( "Unable to update account. Error: " + error );
-        // }, () => {
+        this.user.getUserData( res => {
+            console.log( "User Data: ", res );
+            this.register.name = res['data']['user']['name'];
+            this.register.address = res['data']['user']['address'];
+            this.register.mobile = res['data']['user']['mobile'];
+        }, error => {
+            alert( "Unable to update account. Error: " + error );
+        }, () => {
 
-        // });
+        });
     }
 
     validateInput(){

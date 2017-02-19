@@ -12,6 +12,7 @@ export class HeaderComponent {
 
     onClickLogout(){
         this.user.logout( res =>{
+            alert( "Account logged out." )
             console.log( res );
         });
     }
