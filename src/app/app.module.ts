@@ -15,6 +15,7 @@ import { ForumHomePage } from '../pages/forum/forum-home';
 
 import { HeaderComponent } from './../components/header/header';
 import { ViewComponent } from '../components/view/view';
+import { EditComponent } from '../components/edit/edit';
 import { BackendAngularApiModule } from '../api/backend-angular-api/backend-angular-api.module';
 import { NoticeModalContent } from '../components/modals/notice/notice';
 
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     UserPage,
     NoticeModalContent,
     HeaderComponent,
-    ViewComponent
+    ViewComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot()
   ],
   bootstrap: [ AppComponent ],
-  providers: [ NgbActiveModal ],
+  providers: [ NgbActiveModal, UserPage ],
   entryComponents: [ NoticeModalContent ]
 })
 export class AppModule {}

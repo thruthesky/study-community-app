@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { User } from '../../api/backend-angular-api/user';
 import { 
     USER_REGISTER_REQUEST_DATA, 
@@ -12,36 +12,28 @@ import {
     templateUrl: 'user.html'
 })
 
-export class UserPage implements OnInit {
+export class UserPage {
 
     register: USER_REGISTER_REQUEST_DATA = <USER_REGISTER_REQUEST_DATA> {}
     login: USER_LOGIN_REQUEST_DATA = <USER_LOGIN_REQUEST_DATA> {}
 
-    constructor( private user: User ){ 
-    }
-
-    ngOnInit(){
-        if( this.user.logged ){
-            this.getUser();
-        }
+    constructor( private user: User ){
+        this.getUser(); 
     }
 
     getUser(){
-        // let data: USER_DATA_RESPONSE_DATA = <USER_DATA_RESPONSE_DATA> {
-        //     name: this.register.name,
-        //     address: this.register.address,
-        //     mobile: this.register.mobile
-        // }
-        this.user.getUserData( res => {
-            console.log( "User Data: ", res );
-            this.register.name = res['data']['user']['name'];
-            this.register.address = res['data']['user']['address'];
-            this.register.mobile = res['data']['user']['mobile'];
-        }, error => {
-            alert( "Unable to update account. Error: " + error );
-        }, () => {
+        if ( this.user.logged ) {
+            this.user.getUserData( res => {
+                console.log( "User Data: ", res );
+                this.register.name = res['data']['user']['name'];
+                this.register.address = res['data']['user']['address'];
+                this.register.mobile = res['data']['user']['mobile'];
+            }, error => {
+                alert( "Unable to update account. Error: " + error );
+            }, () => {
 
-        });
+            });
+        } 
     }
 
     validateInput(){
@@ -71,15 +63,14 @@ export class UserPage implements OnInit {
             alert( "User registration success!" );
         }, error => {
             alert( "User registration failed! Error: " + error );
-        }, () => {
-
-        });
+        }, () => {});
     }
     
     onClickLogin(){
         // if( this.validateInput() == false) return;
         this.user.login( this.login, res => {
             alert( "Logged In!" );
+            this.getUser();
         }, error => {
             alert( "Unable to logged in! Error: " + error );
         }); 
@@ -95,9 +86,7 @@ export class UserPage implements OnInit {
             alert( "Update success!" );
         }, error => {
             alert( "Update failed! Error: " + error );
-        }, () => {
-
-        });
+        }, () => {});
     }
 
     onClickDeleteUser(){

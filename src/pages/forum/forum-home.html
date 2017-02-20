@@ -1,9 +1,18 @@
 <header-component></header-component>
-
-<section>
-    <h3>User Name</h3>
-    <p>Email: </p>
-
-    <view-component
-    ></view-component>
+<br>
+<h2>Dashboard</h2>
+<hr>
+<section class="container-fluid">
+    <h3>{{userData.name}}</h3>
+    <div>
+        <edit-component
+            [post] = "post"
+        ></edit-component>
+    </div>
+    <hr>
+    <div *ngFor="let post of list_posts[0]; let i = index">
+        <view-component 
+            [post]="post"
+        ></view-component>
+    </div>
 </section>
