@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User } from '../../api/backend-angular-api/user';
 import { Forum } from '../../api/backend-angular-api/forum';
-import { USER_DATA_RESPONSE_DATA, FORUM_DATA_RESPONSE_DATA } from '../../api/backend-angular-api/interface';
+import { USER_DATA_RESPONSE, FORUM_DATA_RESPONSE_DATA, USER_FIELDS } from '../../api/backend-angular-api/interface';
 
 @Component({
     selector: 'view-component',
@@ -10,14 +10,20 @@ import { USER_DATA_RESPONSE_DATA, FORUM_DATA_RESPONSE_DATA } from '../../api/bac
 
 export class ViewComponent {
 
-    userData: USER_DATA_RESPONSE_DATA;
+    postOwner: USER_FIELDS = <USER_FIELDS> {};
 
-    @Input() post: any;
+    @Input() post: FORUM_DATA_RESPONSE_DATA;
 
     // postData: FORUM_DATA_RESPONSE_DATA = <FORUM_DATA_RESPONSE_DATA> {};
     constructor( private user: User ) { 
      
     }
 
+    getPostOwner(){
     
+        this.user.getUserData( res => {
+
+        }, error => {}, () => {} );
+    }
+
 }

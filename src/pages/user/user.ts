@@ -29,7 +29,7 @@ export class UserPage {
                 this.register.address = res['data']['user']['address'];
                 this.register.mobile = res['data']['user']['mobile'];
             }, error => {
-                alert( "Unable to update account. Error: " + error );
+                alert( "Unable to get user data. Error: " + error );
             }, () => {
 
             });
