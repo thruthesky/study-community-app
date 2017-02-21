@@ -10,7 +10,7 @@
         ></edit-component>
     </div>
     <hr>
-    <div *ngFor="let post of list_posts[0]; let i = index">
+    <div *ngFor="let post of list_posts['forum_data']; let i = index">
         <view-component 
             [post]="post"
         ></view-component>

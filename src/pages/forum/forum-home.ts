@@ -42,6 +42,7 @@ export class ForumHomePage {
         let data: FORUM_DATA_GETS_REQUEST_DATA = <FORUM_DATA_GETS_REQUEST_DATA>{}
         data.config_idx = idx;
         this.forum.getsForumData( data, res => {
+            console.log( 'res :: ', res )
             this.list_posts = res['data'];
             console.log('data :: ', this.list_posts);
         }, error => console.log( "Unable to get post lists. Error: ", error ) );
